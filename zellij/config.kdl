@@ -19,7 +19,7 @@ plugins {
 }
 
 env {
-
+  // your environment you want
 }
 
 theme "nord"
@@ -40,4 +40,7 @@ themes {
   }
 }
 
-mouse_mode true
+mouse_mode false // set true for copy use mouse select.
+copy_clipboard "system"
+copy_on_select false
+scrollback_editor "/opt/homebrew/bin/nvim"

@@ -5,7 +5,7 @@ Install `stow` on your machine and use command to link config repo to your confi
 ```bash
 git clone https://github.com/im6h/dotfiles.git
 
-cd $pwd/dotfiles
+cd $PWD/dotfiles
 
 stow --target ~/.config .
 ```
