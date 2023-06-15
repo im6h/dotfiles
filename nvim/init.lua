@@ -15,11 +15,12 @@ vim.api.nvim_set_keymap("n", "tl", ":blast<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "td", ":bdelete<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "QQ", ":q!<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "WW", ":w!<enter>", {noremap=false})
-vim.api.nvim_set_keymap("n", "E", "$", {noremap=false})
-vim.api.nvim_set_keymap("n", "B", "^", {noremap=false})
+-- vim.api.nvim_set_keymap("n", "E", "$", {noremap=false})
+-- vim.api.nvim_set_keymap("n", "B", "^", {noremap=false})
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "tf", ":TodoTelescope<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "ss", ":noh<CR>", {noremap=true})
+
 
 vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
   {silent = true, noremap = true}
@@ -67,6 +68,13 @@ require('packer').startup(function(use)
       }
     })
     end
+  }
+
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
   }
 
   use {
@@ -669,7 +677,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
+
 require('go').setup()
+
+require('nvim-tree').setup({
+  view = {
+    width = 30,
+    side = "right",
+  },
+  filters = {
+    dotfiles = true,
+  }
+})
+-- api for nvim tree open
+vim.api.nvim_set_keymap("n", "<leader>ee", ":NvimTreeToggle<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<leader>er", ":NvimTreeRefresh<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimFocus<CR>", {noremap=true})
 
 
 
@@ -682,3 +705,8 @@ o.expandtab = true
 o.smartindent = true
 o.tabstop = 4
 o.shiftwidth = 2
+
+vim.opt.termguicolors = true
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+

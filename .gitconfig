@@ -1,0 +1,8 @@
+[user]
+	name = <your_name> 
+	email = <your_email>
+	signingkey = <your_key_to_sign_commit>
+[core]
+	editor = nvim #your editor
+[commit]
+	gpgsign = true #always sign to commit

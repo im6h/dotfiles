@@ -3,12 +3,7 @@ keybinds {
   // keybindings available in normal mode.
   normal {
 
-  }
-  
-  // keybindings available in pane mode.
-  pane {
-
-  }
+  }  
 }
 
 plugins {
@@ -44,3 +39,5 @@ mouse_mode false // set true for copy use mouse select.
 copy_clipboard "system"
 copy_on_select false
 scrollback_editor "/opt/homebrew/bin/nvim"
+
+default_layout "default"
