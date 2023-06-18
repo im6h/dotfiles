@@ -35,9 +35,9 @@ themes {
   }
 }
 
-mouse_mode false // set true for copy use mouse select.
+mouse_mode false // set true for copy use mouse select but has some issue
 copy_clipboard "system"
 copy_on_select false
 scrollback_editor "/opt/homebrew/bin/nvim"
 
-default_layout "default"
+default_layout "default-layout"
