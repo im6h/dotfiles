@@ -209,8 +209,11 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
+  use 'nvim-pack/nvim-spectre'
+  use 'nvim-lua/plenary.nvim'
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+  use 'EdenEast/nightfox.nvim'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -281,7 +284,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme duskfox]]
 
 
 --vim.cmd()
@@ -319,10 +322,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
+
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'onedark',
+    theme = 'duskfox',
     component_separators = '|',
     section_separators = '',
   },
@@ -694,6 +699,20 @@ vim.api.nvim_set_keymap("n", "<leader>ee", ":NvimTreeToggle<CR>", {noremap=true}
 vim.api.nvim_set_keymap("n", "<leader>er", ":NvimTreeRefresh<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimFocus<CR>", {noremap=true})
 
+
+require('spectre').setup({})
+vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").open()<CR>', {
+    desc = "Open Spectre"
+})
+vim.keymap.set('n', '<leader>Sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+    desc = "Search current word"
+})
+vim.keymap.set('v', '<leader>Sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+    desc = "Search current word"
+})
+vim.keymap.set('n', '<leader>Sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+    desc = "Search on current file"
+})
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`
