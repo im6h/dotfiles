@@ -7,6 +7,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
+vim.api.nvim_set_keymap("n", "ff", ":Format<CR>", {noremap=false})
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", {noremap=false})
 vim.api.nvim_set_keymap("n", "tk", ":bnext<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "tj", ":bprev<enter>", {noremap=false})
