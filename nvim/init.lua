@@ -674,6 +674,10 @@ vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimFocus<CR>", { noremap = true })
 
 
 require('spectre').setup({})
+require('monokai-pro').setup({
+    terminal_colors = true,
+    filter = "classic"
+})
 vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").open()<CR>', {
     desc = "Open Spectre"
 })
