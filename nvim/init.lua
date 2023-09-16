@@ -214,6 +214,7 @@ require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
 
     use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+    use 'Mofiqul/dracula.nvim'
     use 'EdenEast/nightfox.nvim'
 
     use "loctvl842/monokai-pro.nvim"
@@ -287,7 +288,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme monokai-pro]]
+vim.cmd [[colorscheme dracula]]
 
 
 --vim.cmd()
