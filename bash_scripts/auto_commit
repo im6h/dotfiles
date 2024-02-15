@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+#echo current date and commit
+cd "$SECOND_BRAIN"
+date_commit=$(date +"%Y/%m/%d %H:%M:%S")
+commit_msg="vault backup: ${date_commit}"
+
+git pull origin main
+git add .
+git commit -m "${commit_msg}"
+git push origin main
