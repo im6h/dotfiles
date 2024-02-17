@@ -32,9 +32,8 @@ alias cdsb="cd $SECOND_BRAIN"
 
 # racing
 alias eb="v ~/.bashrc"
+alias fae="fzf | xargs -r nvim"
 
-# zet config
-#
 # color prompt_command
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
@@ -48,3 +47,16 @@ fi
 
 # colorized prompt
 PROMPT_COMMAND='__git_ps1 "\[\e[33m\]\u\[\e[0m\]@\[\e[34m\]\h\[\e[0m\]:\[\e[35m\]\W\[\e[0m\]" " \n$ "'
+
+# support bash fzf
+# if [[ "$OSTYPE" == "darwin"* ]]; then
+# 	[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && source "/opt/homebrew/etc/profile.d/bash_completion.sh"
+# else
+# 	[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# fi
+
+#source <(kubectl completion bash)
+command -v fzf >/dev/null 2>&1 && {
+	source <(kubectl completion bash | sed 's#"${requestComp}" 2>/dev/null#"${requestComp}" 2>/dev/null | head -n -1 | fzf  --multi=0 #g')
+}
+complete -F __start_kubectl k
