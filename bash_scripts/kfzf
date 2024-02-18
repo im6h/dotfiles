@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#TODO: WIP, not use for production mode
+
+# pod resource
+pod=$(kubectl get pods --output=jsonpath='{range .items[*]}{.metadata.name}{"\n"}' | fzf)
+ctx=$(kubectl config get-contexts -o name | fzf)
+ns=$(kubectl get namespaces --output=jsonpath='{range .items[*]}{.metadata.name}{"\n"}' | fzf)
+
+if [[ ! -n $pod || ! -n $ctx || ! -n $ns ]]; then
+	echo "Require resource name!"
+	exit 0
+fi
+
+# pod resources
+get_pod() {
+	local pod
+	pod=$(kubectl get pods --output=jsonpath='{range .items[*]}{.metadata.name}{"\n"}' | fzf)
+}
+
+describ_pod() {
+	kubectl describe pods/$pod
+}
+
+log_forward_pod() {
+	kubectl logs -f pods/$pod
+}
+
+log_pod_line() {
+	kubectl logs --tail=$1 pods/$pod
+}
+
+# context resources
+set_context() {
+	kubectl config use-contexts $ctx
+}
+
+# namespace resources
+set_namespace() {
+	kubectl config set-context --current --namespace=$ns
+}
+
+if [[ -n $1 ]]; then
+	"desp")
+		describ_pod
+		;;
+	"logpf")
+		log_forward_pod
+		;;
+	"logp")
+		log_pod_line $2
+		;;
+	"ctx")
+		set_context
+		;;
+	"ns")
+		set_namespace
+		;;
+	"*")
+		echo "Require option: desp, logpf, logp"
+		;;
+	esac
+fi
