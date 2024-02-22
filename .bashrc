@@ -45,8 +45,13 @@ if [[ -f "$HOME/bash_scripts/git_prompt.sh" ]]; then
 	source "$HOME/bash_scripts/git_prompt.sh"
 fi
 
+## https://github.com/jonmosco/kube-ps1 - thanks for make kube-ps1
+if [[ -f "$HOME/bash_scripts/kube_prompt.sh" ]]; then
+	source "$HOME/bash_scripts/kube_prompt.sh"
+fi
+
 # colorized prompt
-PROMPT_COMMAND='__git_ps1 "\[\e[33m\]\u\[\e[0m\]@\[\e[34m\]\h\[\e[0m\]:\[\e[35m\]\W\[\e[0m\]" " \n$ "'
+PROMPT_COMMAND='__git_ps1 "\[\e[33m\]\u\[\e[0m\]@\[\e[34m\]\h\[\e[0m\]:\[\e[35m\]\W\[\e[0m\]" " $(kube_ps1)\n$ "'
 
 # support bash fzf
 # if [[ "$OSTYPE" == "darwin"* ]]; then
