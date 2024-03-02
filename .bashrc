@@ -2,6 +2,7 @@
 set -o vi
 
 export SCRIPTS="$HOME/bash_scripts"
+export GITHUB="$HOME/Documents/code/github/"
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="/opt/homebrew/opt/openjdk@11/bin:${PATH}:${SCRIPTS}"
 

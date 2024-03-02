@@ -1,6 +1,9 @@
 #!/bin/bash
 
 #TODO: WIP, not use for production mode
+#add to describe resources
+#delet resources
+#build a common function instead of one function per reosource in Kubernetes
 
 # context resources
 set_context() {
