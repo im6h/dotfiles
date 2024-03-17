@@ -13,7 +13,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # second brain folder
-export SECOND_BRAIN="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/im6h-ob-vault"
+export SECOND_BRAIN="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/im6h-ob-vault"
 
 # customize command alias
 alias v="nvim"
@@ -62,7 +62,7 @@ PROMPT_COMMAND='__git_ps1 "\[\e[33m\]\u\[\e[0m\]@\[\e[34m\]\h\[\e[0m\]:\[\e[35m\
 # fi
 
 #source <(kubectl completion bash)
-command -v fzf >/dev/null 2>&1 && {
-	source <(kubectl completion bash | sed 's#"${requestComp}" 2>/dev/null#"${requestComp}" 2>/dev/null | head -n -1 | fzf  --multi=0 #g')
-}
-complete -F __start_kubectl k
+# command -v fzf >/dev/null 2>&1 && {
+# 	source <(kubectl completion bash | sed 's#"${requestComp}" 2>/dev/null#"${requestComp}" 2>/dev/null | head -n -1 | fzf  --multi=0 #g')
+# }
+# complete -F __start_kubectl k

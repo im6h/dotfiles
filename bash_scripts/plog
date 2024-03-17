@@ -50,4 +50,6 @@ if [[ $# -eq 1 ]]; then
 	filename=$1
 fi
 
-open_file "$SECOND_BRAIN/3-resources/plogs"
+folder="/Users/mikey/Library/Mobile Documents/iCloud~md~obsidian/Documents/im6h-ob-vault"
+
+open_file "$folder/3-resources/plogs"

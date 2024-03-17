@@ -17,7 +17,9 @@ auto_commit() {
 	git push origin main
 }
 
-cd "$SECOND_BRAIN"
+folder="/Users/mikey/Library/Mobile Documents/iCloud~md~obsidian/Documents/im6h-ob-vault"
+
+cd "$folder"
 git pull origin main
 check_and_move_image
 
