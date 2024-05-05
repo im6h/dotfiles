@@ -18,7 +18,7 @@ export SECOND_BRAIN="$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Document
 # customize command alias
 alias v="nvim"
 alias ..="cd .."
-alias ll="exa -l --icons"
+alias ll="eza -l --icons"
 alias config="cd ~/.config"
 alias log="git log --oneline"
 alias branch="git branch -a"
