@@ -17,7 +17,7 @@ auto_commit() {
 	git push origin main
 }
 
-folder="/Users/mikey/Library/Mobile Documents/iCloud~md~obsidian/Documents/im6h-ob-vault"
+folder="/Users/$USER/Library/Mobile Documents/iCloud~md~obsidian/Documents/im6h-ob-vault"
 
 cd "$folder"
 git pull origin main
