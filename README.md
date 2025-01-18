@@ -6,4 +6,4 @@ This repo contains new dotfiles of me, I replaced old tools with newest tools in
 
 ### Repo status
 I will keep update for this repo.
-[current-terminal](./assets/new-wezterm.png)
+![current-terminal](./assets/new-wezterm.png)
