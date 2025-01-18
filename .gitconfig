@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+# Please adapt and uncomment the following lines:
+#	name = im6h
+#	email = danghaiv.18@gmail.com 
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[user]
+	signingkey = /Users/im6h/.ssh/id_ed25519.pub
+	name = im6h
+	email = danghaiv.18@gmail.com

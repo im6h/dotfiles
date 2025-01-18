@@ -1,0 +1,60 @@
+[font]
+size = 16
+
+[font.normal]
+family = "SpaceMono Nerd Font"
+
+[window]
+decorations = "none"
+option_as_alt = "Both"
+
+[window.padding]
+x = 7
+y = 0
+
+[terminal.shell]
+program = "/bin/bash"
+args = ["-l"]
+
+[colors.primary]
+background = "0x2D2A2E"
+foreground = "0xfff1f3"
+
+[colors.cursor]
+text = "#2e3440"
+cursor = "#d8dee9"
+
+[colors.vi_mode_cursor]
+text = "#2e3440"
+cursor = "#d8dee9"
+
+[colors.selection]
+text = "CellForeground"
+background = "#4c566a"
+
+[colors.search.matches]
+foreground = "CellBackground"
+background = "#88c0d0"
+
+[colors.normal]
+black = "0x2c2525"
+red = "0xfd6883"
+green = "0xadda78"
+yellow = "0xf9cc6c"
+blue = "0xf38d70"
+magenta = "0xa8a9eb"
+cyan = "0x85dacc"
+white = "0xfff1f3"
+
+[colors.bright]
+black = "0x72696a"
+red = "0xfd6883"
+green = "0xadda78"
+yellow = "0xf9cc6c"
+blue = "0xf38d70"
+magenta = "0xa8a9eb"
+cyan = "0x85dacc"
+white = "0xfff1f3"
+
+[terminal]
+
