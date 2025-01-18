@@ -60,6 +60,8 @@ config.colors = {
 		},
 	},
 }
+config.initial_rows = 50
+config.initial_cols = 160
 
 --- SSH configurations
 config.ssh_domains = {
