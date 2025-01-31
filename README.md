@@ -7,3 +7,10 @@ This repo contains new dotfiles of me, I replaced old tools with newest tools in
 ### Repo status
 I will keep update for this repo.
 ![current-terminal](./assets/new-wezterm.png)
+
+### Using `stow` to create symbol link
+```bash
+stow --dir=/home/<user>/dotfiles/aerospace/.config --target=/home/<user>/.config .
+stow --dir=/home/<user>/dotfiles/nvim/.config --target=/home/<user>/.config .
+stow --dir=/home/<user>/dotfiles/k9s/.config --target=/home/<user>/.config .
+```
