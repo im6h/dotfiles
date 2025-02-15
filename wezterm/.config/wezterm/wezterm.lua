@@ -2,11 +2,17 @@ local wezterm = require("wezterm")
 local mux = wezterm.mux
 local act = wezterm.action
 
-local config = {}
+local config = wezterm.config_builder()
 local keys = {}
 local mouse_bindings = {}
 local launch_menu = {}
 local bg_path = os.getenv("HOME") .. "/.config/wezterm/background/bwm_bg.jpg"
+
+--- Scrollbar
+config.enable_scroll_bar = true
+
+--- Hyperlink
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 --- Font configurations
 config.font = wezterm.font("UbuntuMono Nerd Font")
@@ -69,7 +75,16 @@ config.ssh_domains = {
 		name = "nix.local",
 		remote_address = "172.16.1.22",
 		username = "mike",
-		multiplexing = "None",
+	},
+	{
+		name = "proxy.local",
+		remote_address = "172.16.1.20",
+		username = "root",
+	},
+	{
+		name = "containers.local",
+		remote_address = "172.16.1.21",
+		username = "root",
 	},
 }
 
