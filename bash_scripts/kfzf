@@ -1,0 +1,61 @@
+#!/bin/bash
+
+#TODO: WIP, not use for production mode
+#add to describe resources
+#delete resources
+
+# context resources
+set_context() {
+	kubectl config use-context $(kubectl config get-contexts -o name | fzf)
+}
+
+# namespace resources
+set_namespace() {
+	kubectl config set-context --current --namespace=$(kubectl get namespace --output=jsonpath='{range .items[*]}{.metadata.name}{"\n"}' | fzf)
+}
+
+# get k8s resources, default use pod
+get_rs_name() {
+	kubectl get ${1:-pods} --output=jsonpath='{range .items[*]}{.metadata.name}{"\n"}'
+}
+
+get_rs_name_yaml() {
+	local rs=$(get_rs_name $1 | fzf)
+	kubectl get ${1:-pods} $rs --output=yaml
+}
+
+get_rs_name_json() {
+	local rs=$(get_rs_name $1 | fzf)
+	kubectl get ${1:-pods} $rs --output=json
+}
+
+describe_rs() {
+	local rs=$(get_rs_name $1 | fzf)
+	kubectl describe ${1:-pods} $rs
+}
+
+if [[ -n $1 ]]; then
+	case "$1" in
+	"ctx")
+		set_context
+		;;
+	"ns")
+		set_namespace
+		;;
+	"rs")
+		get_rs_name $2
+		;;
+	"rsy")
+		get_rs_name_yaml $2
+		;;
+	"rsj")
+		get_rs_name_json $2
+		;;
+	"rsd")
+		describe_rs $2
+		;;
+	*)
+		echo "hello"
+		;;
+	esac
+fi
