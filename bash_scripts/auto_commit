@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+#echo current date and commit
+
+check_and_move_image() {
+	local line_count=$(find . -maxdepth 1 -type f -name '*.png' | wc -l)
+	if [ "$line_count" -ne 0 ]; then
+		mv *.png ./media
+		echo "moved images to the media folder"
+	fi
+}
+
+auto_commit() {
+	local date_commit=$(date +"%Y/%m/%d %H:%M:%S")
+	local commit_msg="vault backup: ${date_commit}"
+	git commit -m "${commit_msg}"
+	git push origin main
+}
+
+folder="$CODE/personal/im6h-ob-vault"
+
+cd "$folder"
+git pull origin main
+check_and_move_image
+
+case "$1" in
+"all")
+	git add .
+	;;
+*)
+	lazygit
+	;;
+esac
+
+auto_commit

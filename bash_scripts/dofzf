@@ -1,0 +1,38 @@
+#!/bin/bash
+
+ds() {
+	local cid
+	cid=$(docker ps | sed 1d | fzf | awk '{print $1}')
+
+	[ -n "$cid" ] && docker stop "$cid"
+}
+
+drm() {
+	local cid
+	cid=$(docker ps -a | sed 1d | fzf | awk '{print $1}')
+
+	[ -n "$cid" ] && docker rm "$cid"
+}
+
+drmi() {
+	docker images | sed 1d | fzf --no-sort -m --tac | awk '{ print $3 }' | xargs -r docker rmi
+}
+
+if [[ -n $1 ]]; then
+	case "$1" in
+	"stop")
+		ds
+		;;
+	"rm")
+		drm
+		;;
+	"rmi")
+		drmi
+		;;
+	*)
+		echo "$1"
+		;;
+	esac
+else
+	echo "Require option: stop, rm, rmi"
+fi
