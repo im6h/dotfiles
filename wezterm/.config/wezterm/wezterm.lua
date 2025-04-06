@@ -16,7 +16,7 @@ config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 --- Font configurations
 config.font = wezterm.font("0xProto Nerd Font Mono")
-config.font_size = 16
+config.font_size = 14
 config.line_height = 1.2
 
 --- UI configurations
@@ -66,26 +66,4 @@ config.colors = {
 		},
 	},
 }
-config.initial_rows = 50
-config.initial_cols = 160
-
---- SSH configurations
-config.ssh_domains = {
-	{
-		name = "nix.local",
-		remote_address = "172.16.1.22",
-		username = "mike",
-	},
-	{
-		name = "proxy.local",
-		remote_address = "172.16.1.20",
-		username = "root",
-	},
-	{
-		name = "containers.local",
-		remote_address = "172.16.1.21",
-		username = "root",
-	},
-}
-
 return config
