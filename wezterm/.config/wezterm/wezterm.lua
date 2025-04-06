@@ -15,8 +15,8 @@ config.enable_scroll_bar = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 --- Font configurations
-config.font = wezterm.font("UbuntuMono Nerd Font")
-config.font_size = 19
+config.font = wezterm.font("0xProto Nerd Font Mono")
+config.font_size = 16
 config.line_height = 1.2
 
 --- UI configurations
