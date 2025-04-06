@@ -3,8 +3,9 @@ This repo contains new dotfiles of me, I replaced old tools with newest tools in
 - From [iTerm2]() to [wezterm]()
 - From [zsh]() to [nushell]()
 - From [nvim]() to [nvim]() :smile:
+- From [MacOS]() to [Linux-Pop!OS]() :rocket:
 
-### Repo status
+### Repo status :warning: Updating!
 I will keep update for this repo.
 ![current-terminal](./assets/new-wezterm.png)
 
@@ -13,4 +14,7 @@ I will keep update for this repo.
 stow --dir=/home/<user>/dotfiles/aerospace/.config --target=/home/<user>/.config .
 stow --dir=/home/<user>/dotfiles/nvim/.config --target=/home/<user>/.config .
 stow --dir=/home/<user>/dotfiles/k9s/.config --target=/home/<user>/.config .
+stow --dir=/home/<user>/dotfiles/i3/.config --target=/home/<user>/.config .
+stow --dir=/home/<user>/dotfiles/rofi/.config --target=/home/<user>/.config .
+stow --dir=/home/<user>/dotfiles/polybar/.config --target=/home/<user>/.config .
 ```
