@@ -1,0 +1,6 @@
+export PATH="$PATH:/usr/local/go/bin:/opt/nvim-linux-x86_64/bin"
+export PS1='\[\033[01;34m\]\w\[\033[00m\]\[\033[01;32m\]$(__git_ps1 " (%s)")\[\033[00m\] '
+alias reload='source ~/.profile'
+alias v='nvim'
+alias pod='podman'
+alias esr='nvim ~/.bashrc'
