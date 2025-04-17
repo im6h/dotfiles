@@ -1,10 +1,10 @@
-set $mod Mod1
+set $mod Mod4
 font pango:0xProto Nerd Font Mono 10
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec_always feh --bg-scale --zoom fill $HOME/.config/i3/background/dock.png
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id xrandr --output eDP --auto --right-of HDMI-A-0
 exec --no-startup-id $HOME/.config/polybar/scripts/ibus-setting.sh
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -17,6 +17,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Shift+d exec --no-startup-id rofi -show combi
+bindsym $mod+Shift+s exec rofi -show power-menu -modi power-menu:/home/$USER/.config/rofi/rofi-power-menu
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -42,10 +43,10 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:󰭹"
+set $ws1 "1: Terminal"
+set $ws2 "2: Firefox"
+set $ws3 "3:󰭹 Chat"
+set $ws4 "4: Misc"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -90,19 +91,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 focus_follows_mouse no
-#set $bgcolor    #523d64
-#set $in-bgcolor #363636
-#set $text       #ffffff
-#set $u-bgcolor  #ff0000
-#set $indicator  #a8a3c1
-#set $in-text    #969696
-#client.focused          $bgcolor        $bgcolor        $text           $indicator
-#client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
-#client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
-#client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcolor
-#bar {
-#	status_command i3status -c /home/$USER/.config/i3status/i3status.conf
-#}
 
 bar {
 	status_command i3status -c /home/$USER/.config/i3status/i3status.conf
@@ -142,5 +130,9 @@ client.urgent #263640 #b08500 #93a1a1 #263640 #263640
 client.placeholder #263640 #b08500 #93a1a1 #263640 #263640
 client.background #263640
 hide_edge_borders smart
-gaps inner 12
-smart_gaps on
+gaps inner 5
+gaps outer 2
+assign [class="firefox"] $ws2
+assign [class="discord"] $ws3
+assign [class="telegram"] $ws3
+assign [class="brave"] $ws4
