@@ -77,17 +77,17 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
 focus_follows_mouse no
@@ -99,29 +99,16 @@ bar {
 	strip_workspace_numbers yes
 
 	colors {
-	background #141c21
-	statusline #ffffff
-	separator #141c21
-
-	# colour of border, background, and text
-	focused_workspace #141c21 #d12f2c #93a1a1
-	active_workspace #141c21 #141c21 #93a1a1
-	inactive_workspace #141c21 #141c21 #93a1a1
-	urgent_workspace #141c21 #b08500 #93a1a1
-	}
-	colors {
-                background #222333
-                statusline #ffffff
-                separator #222333
+    background #222333
+    statusline #ffffff
+    separator #222333
 		focused_workspace #141c21 #d12f2c #93a1a1
 		active_workspace #141c21 #141c21 #93a1a1
 		inactive_workspace #141c21 #141c21 #93a1a1
 		urgent_workspace #141c21 #b08500 #93a1a1
-                binding_mode       #D32F2F #900000 #ffffff
-        }
-
+    binding_mode       #D32F2F #900000 #ffffff
+  }
 }
-
 # colour of border, background, text, indicator, and child_border
 client.focused #d12f2c #263640 #93a1a1 #696ebf #2587cc1
 client.focused_inactive #263640 #b08500 #93a1a1 #263640 #263640
