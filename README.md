@@ -7,7 +7,7 @@ This repo contains new dotfiles of me, I replaced old tools with newest tools in
 
 ### :warning: Repo status Updating!
 I will keep update for this repo.
-![current-terminal](./assets/new-wezterm.png)
+![desktop](./assets/desktop.png)
 
 ### Using `stow` to create symbol link
 
