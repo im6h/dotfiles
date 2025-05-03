@@ -45,10 +45,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 set $ws1 "1: Terminal"
-set $ws2 "2: Firefox"
+set $ws2 "2: Egde"
 set $ws3 "3:󰭹 Chat"
-set $ws4 "4: Misc"
-set $ws5 "5: Others"
+set $ws4 "4: Misc"
+set $ws5 "5: Editor"
 set $ws6 "6:VI"
 set $ws7 "7:VII"
 set $ws8 "8:VIII"
