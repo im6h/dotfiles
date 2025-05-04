@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 local keys = {}
 local mouse_bindings = {}
 local launch_menu = {}
-local bg_path = os.getenv("HOME") .. "/.config/wezterm/background/bwm_bg.jpg"
+local bg_path = os.getenv("HOME") .. "/.config/wezterm/background/dock.png"
 
 --- Scrollbar
 config.enable_scroll_bar = true
@@ -24,8 +24,8 @@ config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
 config.color_scheme = "GruvboxDark"
 config.window_background_image = bg_path
-config.window_background_opacity = 1.0
-config.text_background_opacity = 0.7
+config.window_background_opacity = 0.5
+config.text_background_opacity = 0.9
 config.window_background_image_hsb = {
 	brightness = 0.1,
 	hue = 1.0,
