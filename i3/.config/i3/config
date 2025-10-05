@@ -3,7 +3,7 @@ font pango:0xProto Nerd Font Mono 10
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec_always feh --bg-scale --zoom fill $HOME/.config/i3/background/dock.png
+exec_always feh --bg-scale --zoom fill $HOME/.config/i3/background/chibi.png
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id xrandr --output eDP --auto --right-of HDMI-A-0
 exec --no-startup-id $HOME/.config/polybar/scripts/ibus-setting.sh
@@ -45,7 +45,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 set $ws1 "1: Terminal"
-set $ws2 "2: Egde"
+set $ws2 "2: Browser"
 set $ws3 "3:󰭹 Chat"
 set $ws4 "4: Misc"
 set $ws5 "5: Editor"
@@ -108,7 +108,7 @@ bar {
   }
 }
 # colour of border, background, text, indicator, and child_border
-client.unfocused #282828 #282828 #282828 #282828 #282828
+client.unfocused #282828 #282828 #ffffff #282828 #282828
 client.focused_inactive #fbf1c7 #fbf1c7 #ffffff #fbf1c7 #fbf1c7
 client.focused #fbf1c7 #fbf1c7 #1d2021 #fbf1c7 #fbf1c7
 client.urgent #263640 #b08500 #93a1a1 #263640 #263640
@@ -118,7 +118,9 @@ hide_edge_borders smart
 gaps inner 5
 gaps outer 2
 assign [class="wezterm"] $ws1
-assign [class="edge"] $ws2
+assign [class="code"] $ws1
+assign [class="Edge"] $ws2
 assign [class="discord"] $ws3
 assign [class="Telegram"] $ws3
 assign [class="brave-browser"] $ws4
+assign [class="vlc"] $ws5
