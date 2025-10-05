@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 local keys = {}
 local mouse_bindings = {}
 local launch_menu = {}
-local bg_path = os.getenv("HOME") .. "/.config/wezterm/background/dock.png"
+local bg_path = os.getenv("HOME") .. "/.config/wezterm/background/chibi.png"
 
 --- Scrollbar
 config.enable_scroll_bar = true
