@@ -1,6 +1,0 @@
-antigravity
-antigravity-ide
-brave-beta-bin
-cloudflare-warp-bin
-hyprmon-bin
-wireguard-gui-bin
