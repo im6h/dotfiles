@@ -85,6 +85,6 @@ tasks:
     cmds:
       - "pacman -Qqen > {{.DST}}{{.AUR}}.txt"
       - "pacman -Qqem > {{.DST}}{{.NATIVE}}.txt"
-      - "cp {{.HOME}}/Taskfile.yml {.{DST}}"
+      - "cp {{.HOME}}/Taskfile.yml {{.DST}}"
       - 'git add . && git commit -m "backup arch pkgs"'
       - "git push origin main"
