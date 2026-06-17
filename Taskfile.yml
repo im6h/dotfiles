@@ -49,6 +49,8 @@ tasks:
       ODRIVE: "od://Apps/remotely-save/second_brain/"
       GDRIVE: "gd://Apps/remotely-save/second_brain/"
       LOCAL: "/home/doku/Documents/second_brain/"
+      VIDEO: "/home/doku/Videos/Screencasts/"
+      VIDEO_CLOUD: "od://Pictures/Videos/Market-Trading/"
 
   sync:od:down:
     desc: sync cloud to local
@@ -61,6 +63,14 @@ tasks:
     <<: *sync
     cmds:
       - "rclone copy {{.LOCAL}} {{.ODRIVE}} -v"
+
+  sync:od:video:
+    desc: sync local to cloud
+    <<: *sync
+    dir: "{{.VIDEO}}"
+    cmds:
+      - "rclone copy {{.VIDEO}} {{.VIDEO_CLOUD}} -v"
+      - rm -rf *.mp4
 
   sync:gd:up:
     desc: sync local to cloud
