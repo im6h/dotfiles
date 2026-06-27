@@ -5,6 +5,11 @@ version: "3"
 vars:
   CTN: '{{ .CTN | default "podman" }}'
 
+includes:
+  install: 'taskfile/install.yaml'
+  gh: 'taskfile/gh.yaml'
+  sync: 'taskfile/sync.yaml'
+
 tasks:
   ctn:common: &common
     dir: "{{.USER_WORKING_DIR}}"
@@ -32,31 +37,19 @@ tasks:
     cmds:
       - '{{.CTN }} image prune -a --filter "until=168h"'
 
-  gh:pr:create:
-    desc: create pr github
-    dir: "{{.USER_WORKING_DIR}}"
-    cmds:
-      - gh pr create -f
-
-  gh:pr:merge:
-    desc: merge pr github
-    dir: "{{.USER_WORKING_DIR}}"
-    cmds:
-      - gh pr merge -m -d
-
   sync: &sync
     vars:
       ODRIVE: "od://Apps/remotely-save/second_brain/"
       GDRIVE: "gd://Apps/remotely-save/second_brain/"
-      LOCAL: "/home/doku/Documents/second_brain/"
-      VIDEO: "/home/doku/Videos/Screencasts/"
+      LOCAL: "{{.ROOT_DIR}}/Documents/second_brain/"
+      VIDEO: "{{.ROOT_DIR}}/Videos/Screencasts/"
       VIDEO_CLOUD: "od://Pictures/Videos/Market-Trading/"
 
   sync:od:down:
     desc: sync cloud to local
     <<: *sync
     cmds:
-      - "rclone copy {{.ODRIVE}} {{.LOCAL}} -v && qmd update"
+      - "rclone copy {{.ODRIVE}} {{.LOCAL}} -v"
 
   sync:od:up:
     desc: sync local to cloud
@@ -84,6 +77,14 @@ tasks:
       OCI: quay.io/ncdv/d3-tools:harness-0.0.1
     cmds:
       - "{{.CTN}} run --rm -v ./:/usr/src/app {{.OCI}}"
+
+  software-hub:
+    cmds:
+      - "distrobox enter software-hub"
+
+  dev-shell:
+    cmds:
+      - "toolbox enter dev-shell"
 
   pkg:bk:
     dir: /home/doku/onedrive/backup/dotfiles/
