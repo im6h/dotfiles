@@ -10,7 +10,7 @@ tasks:
   brew:
     desc: "brew install package"
     cmds:
-      - for: ['1password-gui-linux', 'antigravity-ide-linux', 'antigravity-linux', 'stow', 'neovim']
+      - for: ['1password-gui-linux', 'antigravity-ide-linux', 'antigravity-linux', 'stow', 'neovim', '1password-cli']
         cmd: "brew install {{.ITEM}} -y"
 
   bluefin:
