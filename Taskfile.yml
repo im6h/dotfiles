@@ -4,13 +4,12 @@ version: "3"
 
 vars:
   CTN: '{{ .CTN | default "podman" }}'
-  USER_DIR: '{{ .USER_DIR | default "/var/home/doku" }}'
 
 includes:
-  install: 'dotfiles/taskfile/install.yaml'
-  gh: 'dotfiles/taskfile/gh.yaml'
-  sync: 'dotfiles/taskfile/sync.yaml'
-  ctn: 'dotfiles/taskfile/container.yaml'
+  install: '/home/doku/dotfiles/taskfile/install.yaml'
+  gh: '/home/doku/dotfiles/taskfile/gh.yaml'
+  sync: '/home/doku/dotfiles/taskfile/sync.yaml'
+  ctn: '/home/doku/dotfiles/taskfile/container.yaml'
 
 tasks:
   harness:init:

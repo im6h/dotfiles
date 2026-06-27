@@ -14,3 +14,9 @@ tasks:
     dir: "{{.USER_WORKING_DIR}}"
     cmds:
       - gh pr merge -m -d
+
+  sign-all:
+    desc: sign all commits in git history
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - git rebase --exec "git commit --amend --no-edit -n -S" -i --root
