@@ -10,6 +10,7 @@ includes:
   gh: '/home/doku/dotfiles/taskfile/gh.yaml'
   sync: '/home/doku/dotfiles/taskfile/sync.yaml'
   ctn: '/home/doku/dotfiles/taskfile/container.yaml'
+  link: '/home/doku/dotfiles/taskfile/link.yaml'
 
 tasks:
   harness:init:
