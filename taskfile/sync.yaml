@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  sync: &sync
+    dir: '{{.ROOT_DIR}}/Documents/second_brain/'
+    vars:
+      ODRIVE: "od://Apps/remotely-save/second_brain/"
+      GDRIVE: "gd://Apps/remotely-save/second_brain/"
+      LOCAL: "{{.ROOT_DIR}}/Documents/second_brain/"
+      VIDEO: "{{.ROOT_DIR}}/Videos/Screencasts/"
+      VIDEO_CLOUD: "od://Pictures/Videos/Market-Trading/"
+
+  od-down:
+    desc: sync cloud to local
+    <<: *sync
+    cmds:
+      - "rclone copy {{.ODRIVE}} {{.LOCAL}} -v"
+
+  od-up:
+    desc: sync local to cloud
+    <<: *sync
+    cmds:
+      - "rclone copy {{.LOCAL}} {{.ODRIVE}} -v"
+
+  od-video:
+    desc: sync local to cloud
+    <<: *sync
+    dir: "{{.VIDEO}}"
+    cmds:
+      - "rclone copy {{.VIDEO}} {{.VIDEO_CLOUD}} -v"
+      - rm -rf *.mp4
+
+  gd-up:
+    desc: sync local to cloud
+    <<: *sync
+    cmds:
+      - "rclone copy {{.LOCAL}} {{.GDRIVE}} -v"

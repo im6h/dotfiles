@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  prc:
+    desc: create pr github
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - gh pr create -f
+
+  prm:
+    desc: merge pr github
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - gh pr merge -m -d
