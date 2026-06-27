@@ -4,73 +4,15 @@ version: "3"
 
 vars:
   CTN: '{{ .CTN | default "podman" }}'
+  USER_DIR: '{{ .USER_DIR | default "/var/home/doku" }}'
 
 includes:
-  install: 'taskfile/install.yaml'
-  gh: 'taskfile/gh.yaml'
-  sync: 'taskfile/sync.yaml'
+  install: 'dotfiles/taskfile/install.yaml'
+  gh: 'dotfiles/taskfile/gh.yaml'
+  sync: 'dotfiles/taskfile/sync.yaml'
+  ctn: 'dotfiles/taskfile/container.yaml'
 
 tasks:
-  ctn:common: &common
-    dir: "{{.USER_WORKING_DIR}}"
-    vars:
-      NAME: '{{ .NAME | default "plog" }}'
-      IMAGE: "ghcr.io/im6h/{{.NAME}}"
-      HOST_DEST: root@10.2.0.1
-      COMPOSE_DEST: '{{ .DEST | default "/root/docker-compose/npfhome/docker-compose.yaml" }}'
-
-  ctn:build:
-    desc: build
-    <<: *common
-    cmds:
-      - "{{.CTN}} build -f Containerfile -t {{.IMAGE}} ."
-
-  ctn:deployy:
-    desc: deploy
-    <<: *common
-    cmds:
-      - '{{.CTN | default "docker" }} pussh "{{.IMAGE}}" "{{.HOST_DEST}}"'
-      - 'ssh {{.HOST_DEST}} "docker compose -f {{.COMPOSE_DEST}} up -d --force-recreate --no-deps"'
-  ctn:prune:
-    desc: prune system
-    <<: *common
-    cmds:
-      - '{{.CTN }} image prune -a --filter "until=168h"'
-
-  sync: &sync
-    vars:
-      ODRIVE: "od://Apps/remotely-save/second_brain/"
-      GDRIVE: "gd://Apps/remotely-save/second_brain/"
-      LOCAL: "{{.ROOT_DIR}}/Documents/second_brain/"
-      VIDEO: "{{.ROOT_DIR}}/Videos/Screencasts/"
-      VIDEO_CLOUD: "od://Pictures/Videos/Market-Trading/"
-
-  sync:od:down:
-    desc: sync cloud to local
-    <<: *sync
-    cmds:
-      - "rclone copy {{.ODRIVE}} {{.LOCAL}} -v"
-
-  sync:od:up:
-    desc: sync local to cloud
-    <<: *sync
-    cmds:
-      - "rclone copy {{.LOCAL}} {{.ODRIVE}} -v"
-
-  sync:od:video:
-    desc: sync local to cloud
-    <<: *sync
-    dir: "{{.VIDEO}}"
-    cmds:
-      - "rclone copy {{.VIDEO}} {{.VIDEO_CLOUD}} -v"
-      - rm -rf *.mp4
-
-  sync:gd:up:
-    desc: sync local to cloud
-    <<: *sync
-    cmds:
-      - "rclone copy {{.LOCAL}} {{.GDRIVE}} -v"
-
   harness:init:
     dir: "{{.USER_WORKING_DIR}}"
     vars:
