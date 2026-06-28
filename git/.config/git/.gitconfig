@@ -1,13 +1,12 @@
-# This is Git's per-user configuration file.
-# Please adapt and uncomment the following lines:
-#	name = im6h
-#	email = danghaiv.18@gmail.com 
-[commit]
-	gpgsign = true
-[gpg]
-	format = ssh
 [user]
 	name = im6h
 	email = danghaiv.18@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEi28Eje6cjiKCz5iQiMM8lmNu0abXrspIRxG+o8ttHd
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /home/linuxbrew/.linuxbrew/bin/op-ssh-sign
+[commit]
+	gpgsign = true
 [core]
 	editor = vim
