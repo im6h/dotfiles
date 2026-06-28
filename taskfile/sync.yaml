@@ -4,7 +4,7 @@ version: "3"
 
 tasks:
   sync: &sync
-    dir: '{{.ROOT_DIR}}/Documents/second_brain/'
+    dir: "{{.ROOT_DIR}}/Documents/second_brain/"
     vars:
       ODRIVE: "od://Apps/remotely-save/second_brain/"
       GDRIVE: "gd://Apps/remotely-save/second_brain/"
@@ -37,3 +37,4 @@ tasks:
     <<: *sync
     cmds:
       - "rclone copy {{.LOCAL}} {{.GDRIVE}} -v"
+

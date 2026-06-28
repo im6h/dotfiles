@@ -6,5 +6,16 @@ tasks:
   stow:
     desc: stow link package
     cmds:
-      - for: ['i3', 'k9s', 'neovim', 'polybar', 'rofi', 'wezterm', 'zellij', 'tmux']
+      - for:
+          [
+            "i3",
+            "k9s",
+            "neovim",
+            "polybar",
+            "rofi",
+            "wezterm",
+            "zellij",
+            "tmux",
+          ]
         cmd: "stow --dir=/home/$USER/dotfiles/{{.ITEM}}.config --target=/home/$USER/.config ."
+

@@ -6,7 +6,7 @@ vars:
   CTN: '{{ .CTN | default "podman" }}'
 
 tasks:
-  ctn:common: &common
+  common: &common
     dir: "{{.USER_WORKING_DIR}}"
     vars:
       NAME: '{{ .NAME | default "plog" }}'
@@ -14,21 +14,22 @@ tasks:
       HOST_DEST: root@10.2.0.1
       COMPOSE_DEST: '{{ .DEST | default "/root/docker-compose/npfhome/docker-compose.yaml" }}'
 
-  ctn:build:
+  build:
     desc: build
     <<: *common
     cmds:
       - "{{.CTN}} build -f Containerfile -t {{.IMAGE}} ."
 
-  ctn:deployy:
+  deployy:
     desc: deploy
     <<: *common
     cmds:
       - '{{.CTN | default "docker" }} pussh "{{.IMAGE}}" "{{.HOST_DEST}}"'
       - 'ssh {{.HOST_DEST}} "docker compose -f {{.COMPOSE_DEST}} up -d --force-recreate --no-deps"'
-      
-  ctn:prune:
+
+  prune:
     desc: prune system
     <<: *common
     cmds:
       - '{{.CTN }} image prune -a --filter "until=168h"'
+
