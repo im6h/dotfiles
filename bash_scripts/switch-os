@@ -1,0 +1,133 @@
+#!/bin/bash
+
+# Target images
+IMAGE_HYPRBLUE="ghcr.io/ashebanow/hyprblue-open-video"
+IMAGE_BLUEFIN="ghcr.io/projectbluefin/bluefin:stable"
+
+# Check available tools
+HAS_BOOTC=false
+HAS_RPM_OSTREE=false
+
+if command -v bootc &>/dev/null; then
+    HAS_BOOTC=true
+fi
+if command -v rpm-ostree &>/dev/null; then
+    HAS_RPM_OSTREE=true
+fi
+
+# Detect current image
+CURRENT_IMAGE=""
+if [ "$HAS_RPM_OSTREE" = true ]; then
+    CURRENT_IMAGE=$(rpm-ostree status 2>/dev/null | grep -E -o "ghcr.io/[a-zA-Z0-9_./:-]+" | head -n 1)
+fi
+
+if [ -z "$CURRENT_IMAGE" ] && [ "$HAS_BOOTC" = true ]; then
+    CURRENT_IMAGE=$(sudo bootc status --format json 2>/dev/null | grep -E -o "ghcr.io/[a-zA-Z0-9_./:-]+" | head -n 1)
+fi
+
+echo "=========================================================="
+echo "    🌀  OS Image Switcher (Hyprblue <-> Bluefin Stable)   "
+echo "=========================================================="
+echo ""
+
+if [ -n "$CURRENT_IMAGE" ]; then
+    echo "📍 Current booted image: $CURRENT_IMAGE"
+else
+    echo "📍 Current booted image: [Could not detect]"
+fi
+
+# Determine targets
+if [[ "$CURRENT_IMAGE" == *"$IMAGE_HYPRBLUE"* ]]; then
+    TARGET_IMAGE="$IMAGE_BLUEFIN"
+    TARGET_NAME="Bluefin Stable"
+elif [[ "$CURRENT_IMAGE" == *"$IMAGE_BLUEFIN"* ]]; then
+    TARGET_IMAGE="$IMAGE_HYPRBLUE"
+    TARGET_NAME="Hyprblue (Open Video)"
+else
+    echo ""
+    echo "Could not auto-determine target based on current OS image."
+    echo "Please select the target image manually:"
+    echo "1) Hyprblue (ghcr.io/ashebanow/hyprblue-open-video)"
+    echo "2) Bluefin Stable (ghcr.io/projectbluefin/bluefin:stable)"
+    read -p "Select option (1-2): " img_choice
+    case "$img_choice" in
+        1)
+            TARGET_IMAGE="$IMAGE_HYPRBLUE"
+            TARGET_NAME="Hyprblue (Open Video)"
+            ;;
+        2)
+            TARGET_IMAGE="$IMAGE_BLUEFIN"
+            TARGET_NAME="Bluefin Stable"
+            ;;
+        *)
+            echo "❌ Invalid choice. Exiting."
+            exit 1
+            ;;
+    esac
+fi
+
+echo "🎯 Target image: $TARGET_IMAGE ($TARGET_NAME)"
+echo ""
+
+# Choose Tool
+TOOL=""
+if [ "$HAS_BOOTC" = true ] && [ "$HAS_RPM_OSTREE" = true ]; then
+    echo "Both bootc and rpm-ostree are available."
+    echo "Choose which tool to use:"
+    echo "1) bootc (Recommended for bootc-based images)"
+    echo "2) rpm-ostree (Traditional OSTree rebase)"
+    read -p "Select option (1-2) [Default: 1]: " tool_choice
+    case "$tool_choice" in
+        2)
+            TOOL="rpm-ostree"
+            ;;
+        *)
+            TOOL="bootc"
+            ;;
+    esac
+elif [ "$HAS_BOOTC" = true ]; then
+    TOOL="bootc"
+elif [ "$HAS_RPM_OSTREE" = true ]; then
+    TOOL="rpm-ostree"
+else
+    echo "❌ Error: Neither bootc nor rpm-ostree was found on your system."
+    exit 1
+fi
+
+echo ""
+echo "🛠️  Using tool: $TOOL"
+
+# Build command
+if [ "$TOOL" = "bootc" ]; then
+    CMD="sudo bootc switch $TARGET_IMAGE"
+else
+    CMD="sudo rpm-ostree rebase ostree-unverified-registry:$TARGET_IMAGE"
+fi
+
+echo ""
+echo "Command to execute:"
+echo "👉 $CMD"
+echo ""
+
+read -p "Are you sure you want to perform this switch? (y/N): " confirm
+if [[ "$confirm" =~ ^[yY](es)?$ ]]; then
+    echo ""
+    echo "🚀 Executing switch..."
+    eval "$CMD"
+    if [ $? -eq 0 ]; then
+        echo ""
+        echo "✅ OS Switch completed successfully!"
+        echo "The switch will take effect on the next boot."
+        read -p "Reboot now? (y/N): " reboot_confirm
+        if [[ "$reboot_confirm" =~ ^[yY](es)?$ ]]; then
+            echo "🔄 Rebooting..."
+            sudo reboot
+        fi
+    else
+        echo ""
+        echo "❌ Error: The switch command failed."
+        exit 1
+    fi
+else
+    echo "Cancelled."
+fi
