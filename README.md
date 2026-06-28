@@ -6,15 +6,15 @@ Here, you'll find everything from window manager configurations to custom CLI he
 
 ---
 
-## 📝 The Migration Journey: From macOS to Linux (Bluefin OS)
+## 📝 The Migration Journey: From macOS to Linux (Hyprblue / Bluefin OS)
 
-Every developer's environment is an evolution. Over the years, I've experimented with various tools to find the perfect blend of performance, aesthetics, and efficiency. This repository tracks my latest major migration: moving from a macOS-centric setup to a cloud-native, immutable Linux environment running **Bluefin OS**.
+Every developer's environment is an evolution. Over the years, I've experimented with various tools to find the perfect blend of performance, aesthetics, and efficiency. This repository tracks my latest major migration: moving from a macOS-centric setup to a cloud-native, immutable Linux environment running **Hyprblue OS** (a custom Hyprland-enabled image based on Bluefin).
 
 Here is how my daily driver stack has evolved:
 
-| Category | The Old Stack (macOS) | The New Stack (Bluefin OS) | Rationale |
+| Category | The Old Stack (macOS) | The New Stack (Hyprblue OS) | Rationale |
 | :--- | :--- | :--- | :--- |
-| **OS** | macOS | **Bluefin OS** 🚀 | Cloud-native, immutable Fedora-based system with containerized workloads and zero-maintenance reliability. |
+| **OS** | macOS | **Hyprblue OS** 🚀 | Cloud-native, immutable Fedora-based system (`ghcr.io/ashebanow/hyprblue-open-video`) with native Hyprland, and switching support to **Bluefin OS** (`ghcr.io/projectbluefin/bluefin:stable`). |
 | **Terminal** | iTerm2 | **WezTerm** ⚡ | GPU-accelerated terminal emulator, configured entirely in Lua with great font rendering and transparency. |
 | **Shell** | Zsh | **Nushell** 🦀 | Structured data pipelines, modern syntax, and safety. |
 | **Window Manager** | AeroSpace | **i3wm** / **Polybar** 🧩 | Tiling layouts, rich custom status bars, and keyboard-centric workspace isolation. |
@@ -31,7 +31,7 @@ GPU-accelerated terminal emulator configured in Lua. Key configurations:
 - **Font**: `0xProto Nerd Font Mono` (size 14, line height 1.2) for crisp readability.
 - **Color Scheme**: `GruvboxDark` with 50% opacity and HSB adjustments.
 - **Background**: Custom chibi wallpaper (`~/.config/wezterm/background/chibi.png`) with CSS-like transparency layers.
-- **Tab Bar**: Custom theme styled with purple hues matching the Bluefin OS terminal vibe.
+- **Tab Bar**: Custom theme styled with purple hues matching the Hyprblue / Bluefin OS terminal vibe.
 
 ### 2. Window Management: i3wm & AeroSpace
 - **i3wm (Linux)**: Beautiful, custom tiling window manager setup featuring gaps, custom client borders, workspaces assigned to specific applications (WezTerm, Edge/Brave, Discord/Telegram, VLC), and workspace-independent audio controls.
@@ -56,6 +56,7 @@ Custom-written Bash scripts to boost shell navigation:
 - `dofzf`: FZF-powered interactive tool to stop or remove containers/images (`stop`, `rm`, `rmi`).
 - `plog`: Automated Zettelkasten daily logs launcher for Obsidian inside Neovim.
 - `zet`: Zettelkasten template generator and Obsidian vault linker.
+- `switch-os`: Interactive OS switcher script using `bootc` or `rpm-ostree` to toggle between Hyprblue and Bluefin Stable.
 - `git_prompt.sh` & `kube_prompt.sh`: Custom git and kubernetes prompts for a responsive Bash environment.
 
 ---
@@ -103,4 +104,4 @@ To get a gorgeous, functional Git status prompt in Bash:
 
 Here is a preview of the clean workspace with custom wallpaper and Gruvbox aesthetics:
 
-![desktop](./assets/desktop.png)
+![desktop](./assets/desktop_01.png)
