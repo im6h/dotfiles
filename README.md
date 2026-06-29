@@ -31,9 +31,8 @@ GPU-accelerated, highly customizable, and lightweight terminal emulator. Key con
 - **Color Scheme**: `Atom` theme (from `kitty-themes`) with 50% background opacity (`background_opacity 0.5`).
 - **Features**: Enabled animated cursor trail (`cursor_trail 1`), dynamic background opacity support, and disabled default window close confirmation.
 
-### 2. Window Management: Hyprland & AeroSpace
+### 2. Window Management: Hyprland
 - **Hyprland (Linux)**: Modern, dynamic tiling Wayland compositor with fluid animations. Customized configuration adapted from [JaKooLit's Hyprland dotfiles](https://github.com/JaKooLit/Hyprland-Dots), featuring workspaces, monitor profile management, customized animations, wallust integration, custom scripts, and session locking via hypridle/hyprlock.
-- **AeroSpace (macOS Compatibility)**: Keep it moving when on macOS using a dedicated AeroSpace config mapped to tiling hotkeys.
 
 ### 3. Editor: LazyVim (Neovim)
 A modern Neovim configuration built on top of [LazyVim](https://github.com/LazyVim/LazyVim). Supercharged with auto-completion, treesitter parsing, LSP integrations, and a clean file explorer.
