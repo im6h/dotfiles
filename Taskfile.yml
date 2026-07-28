@@ -12,6 +12,7 @@ includes:
   ctn: "/home/doku/dotfiles/taskfile/container.yaml"
   link: "/home/doku/dotfiles/taskfile/link.yaml"
   adb: "/home/doku/dotfiles/taskfile/adb.yaml"
+  # image: "/home/doku/dotfiles/taskfile/image.yaml"
 
 tasks:
   ### common task
@@ -20,9 +21,9 @@ tasks:
     vars:
       OCI: quay.io/ncdv/d3-tools:harness-0.0.1
     cmds:
-      - "{{.CTN}} run --rm -v ./:/usr/src/app {{.OCI}}"
+      - "{{.CTN}} run --rm -v ./:/usr/src/app:z {{.OCI}}" # z for bypass permission in podman
 
-  software-hub:
+  distrohub:
     cmds:
       - "distrobox enter software-hub"
 
