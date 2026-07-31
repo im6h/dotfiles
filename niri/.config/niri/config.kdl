@@ -21,8 +21,8 @@ input {
             // For more information, see xkeyboard-config(7).
 
             // For example:
-            layout "us,vn"
-            // options "grp:ctrl_space_toggle,compose:ralt,ctrl:nocaps"
+            layout "us"
+            options "grp:ctrl_space_toggle,compose:ralt,ctrl:nocaps"
 
             // If this section is empty, niri will fetch xkb settings
             // from org.freedesktop.locale1. You can control these using
@@ -30,7 +30,7 @@ input {
         }
 
         // Enable numlock on startup, omitting this setting disables it.
-        numlock
+        // numlock
     }
 
     // Next sections include libinput settings.
@@ -416,6 +416,7 @@ binds {
 
     Mod+W repeat=false { close-window; }
 
+    // mod + key => focus application between window
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
@@ -424,7 +425,10 @@ binds {
     Mod+J     { focus-window-down; }
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
+    Mod+Home  { focus-column-first; }
+    Mod+End   { focus-column-last; }
 
+    // mod + ctrl + key => move application between window
     Mod+Ctrl+Left  { move-column-left; }
     Mod+Ctrl+Down  { move-window-down; }
     Mod+Ctrl+Up    { move-window-up; }
@@ -433,19 +437,10 @@ binds {
     Mod+Ctrl+J     { move-window-down; }
     Mod+Ctrl+K     { move-window-up; }
     Mod+Ctrl+L     { move-column-right; }
-
-    // Alternative commands that move across workspaces when reaching
-    // the first or last window in a column.
-    // Mod+J     { focus-window-or-workspace-down; }
-    // Mod+K     { focus-window-or-workspace-up; }
-    // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-    // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
-
-    Mod+Home { focus-column-first; }
-    Mod+End  { focus-column-last; }
     Mod+Ctrl+Home { move-column-to-first; }
     Mod+Ctrl+End  { move-column-to-last; }
 
+    // mod + shift + key => focus monitor
     Mod+Shift+Left  { focus-monitor-left; }
     Mod+Shift+Down  { focus-monitor-down; }
     Mod+Shift+Up    { focus-monitor-up; }
@@ -455,6 +450,7 @@ binds {
     Mod+Shift+K     { focus-monitor-up; }
     Mod+Shift+L     { focus-monitor-right; }
 
+    // mod + shift + ctrl + key => move column between monitor
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
@@ -464,18 +460,8 @@ binds {
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
-    // Alternatively, there are commands to move just a single window:
-    // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
-    // ...
-
-    // And you can also move a whole workspace to another monitor:
-    // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
-    // ...
-
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
     Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
     Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
     Mod+Ctrl+U         { move-column-to-workspace-down; }
@@ -485,6 +471,9 @@ binds {
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
     // ...
 
+    // for workspace interactive
+    Mod+U              { focus-workspace-down; }
+    Mod+I              { focus-workspace-up; }
     Mod+Shift+Page_Down { move-workspace-down; }
     Mod+Shift+Page_Up   { move-workspace-up; }
     Mod+Shift+U         { move-workspace-down; }
@@ -513,23 +502,6 @@ binds {
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-    // Similarly, you can bind touchpad scroll "ticks".
-    // Touchpad scrolling is continuous, so for these binds it is split into
-    // discrete intervals.
-    // These binds are also affected by touchpad's natural-scroll, so these
-    // example binds are "inverted", since we have natural-scroll enabled for
-    // touchpads by default.
-    // Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
-    // Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
-
-    // You can refer to workspaces by index. However, keep in mind that
-    // niri is a dynamic workspace system, so these commands are kind of
-    // "best effort". Trying to refer to a workspace index bigger than
-    // the current workspace count will instead refer to the bottommost
-    // (empty) workspace.
-    //
-    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-    // will all refer to the 3rd workspace.
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
