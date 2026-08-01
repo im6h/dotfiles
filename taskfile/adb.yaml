@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+vars:
+  IP_REMOTE: '{{ .IP | default ""}}'
+
+tasks:
+  connect:
+    desc: connect remote IP
+    cmds:
+      - "adb connect {{.IP_REMOTE}}:5553"
+
+  disconnect:
+    desc: disconnect remote IP
+    cmds:
+      - "adb disconnect {{.IP_REMOTE}}:5553"
