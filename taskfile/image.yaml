@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  heic-to-jpg:
+    desc: Convert a HEIC image to JPG (Usage: task image:heic-to-jpg SRC=path/to/file.heic [DST=path/to/file.jpg])
+    vars:
+      DST: '{{.DST | default (replace ".heic" ".jpg" .SRC)}}'
+    cmds:
+      - |
+        python3 -c "
+        import gi
+        gi.require_version('GdkPixbuf', '2.0')
+        from gi.repository import GdkPixbuf
+        pb = GdkPixbuf.Pixbuf.new_from_file('{{.SRC}}')
+        pb.savev('{{.DST}}', 'jpeg', [], [])
+        "
+      - echo "Successfully converted {{.SRC}} to {{.DST}}"
+
+  heic-to-png:
+    desc: Convert a HEIC image to PNG (Usage: task image:heic-to-png SRC=path/to/file.heic [DST=path/to/file.png])
+    vars:
+      DST: '{{.DST | default (replace ".heic" ".png" .SRC)}}'
+    cmds:
+      - |
+        python3 -c "
+        import gi
+        gi.require_version('GdkPixbuf', '2.0')
+        from gi.repository import GdkPixbuf
+        pb = GdkPixbuf.Pixbuf.new_from_file('{{.SRC}}')
+        pb.savev('{{.DST}}', 'png', [], [])
+        "
+      - echo "Successfully converted {{.SRC}} to {{.DST}}"
