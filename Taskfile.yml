@@ -15,6 +15,14 @@ includes:
   # image: "/home/doku/dotfiles/taskfile/image.yaml"
 
 tasks:
+  ### re-sign specific commit:
+  resign:
+    dir: "{{.USER_WORKING_DIR}}"
+    vars:
+      COMMIT: ""
+    cmds:
+      - |
+        git rebase --exec "git commit --amend --no-edit -n -S" -i  {{.COMMIT}}
   ### common task
   harness:init:
     dir: "{{.USER_WORKING_DIR}}"
