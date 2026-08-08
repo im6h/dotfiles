@@ -1,0 +1,4 @@
+// spawn-at-startup "flatpak" "run" "org.fcitx.Fcitx5"
+// spawn-at-startup "hyprpaper"
+spawn-at-startup "noctalia"
+spawn-sh-at-startup "fcitx5 -d"
